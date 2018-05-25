@@ -31,7 +31,7 @@ namespace WpfApp1
         string path = @"\\depot\ITDEPT\RTS";
         public MainWindow()
         {
-            
+  
             InitializeComponent();
 
 
@@ -439,6 +439,44 @@ namespace WpfApp1
                     }
                 }
             }
+        }
+
+        private void SaveState_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string[] current = (PathBox.SelectedItem.ToString()).Split('\n');
+                Finished.Items.Add(current[0] + "\n" + current[1]);
+                foreach (Specified t in sorts)
+                {
+                    for (int i = 0; i < t.locations.Count; i++)
+                    {
+
+                        if (t.locations[i] == current[0])
+                        {
+                            t.used = true;
+                            System.Windows.MessageBox.Show("got here to remove from name box");
+                        }
+                    }
+                }
+                UpdateList();
+
+            }
+            catch (NullReferenceException)
+            {
+                System.Windows.MessageBox.Show("Please make sure a file and a file path are selected!");
+            }
+        }
+
+        private void TransferBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //need to have a checked status so the boxes that are checked can be removed or transfered ,
+            
         }
     }
 }

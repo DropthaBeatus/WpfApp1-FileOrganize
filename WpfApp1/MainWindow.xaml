@@ -1,4 +1,5 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
+﻿
+    <Window x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,17 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
-    <Grid>
+    <Window.Resources>
+        <VisualBrush x:Key="MyVisualBrush" TileMode="Tile" Viewport="0,0,15,15" ViewportUnits="Absolute" Viewbox="0,0,15,15" ViewboxUnits="Absolute">
+            <VisualBrush.Visual>
+                <Grid Background="Black">
+                    <Path Data="M 0 15 L 15 0" Stroke="Gray" />
+                    <Path Data="M 0 0 L 15 15" Stroke="Gray" />
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </Window.Resources>
+    <Grid Background="{StaticResource MyVisualBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="217*"/>
             <ColumnDefinition Width="579*"/>
@@ -15,15 +26,22 @@
             <RowDefinition Height="258*"/>
             <RowDefinition Height="611*"/>
         </Grid.RowDefinitions>
-        <ListBox Name="NameBox" HorizontalAlignment="Left" Height="399" VerticalAlignment="Top" Width="844" Margin="10,59,0,0" SelectionChanged="NameBox_SelectionChanged" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <ListBox Name="PathBox" Margin="425,31,10,439" SelectionChanged="PathBox_SelectionChanged" Grid.RowSpan="2" Grid.Column="1"/>
-        <TextBox Name="SearchBox" Margin="10,31,870,204" TextWrapping="Wrap" Text="" Grid.ColumnSpan="2"/>
+        <ListBox Name="NameBox" HorizontalAlignment="Right" Width="844" Margin="0,59,738,411" SelectionChanged="NameBox_SelectionChanged" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <CheckBox Content="CheckBox" Height="0" Width="15"/>
+        </ListBox>
+        <ListBox Name="PathBox" Margin="425,31,0,0" SelectionChanged="PathBox_SelectionChanged" Grid.RowSpan="2" Grid.Column="1" Height="394" VerticalAlignment="Top" HorizontalAlignment="Left" Width="723"/>
+        <TextBox Name="SearchBox" Margin="0,31,870,204" TextWrapping="Wrap" Text="" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="712"/>
         <Button Name="SearchBTN" Content="Search" Margin="293,31,738,204" Click="SearchBTN_Click" Grid.Column="1"/>
-        <Button Content="Open File" Margin="781,0,10,406" Click="Button_Click" Grid.Column="1" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
-        <Button Content="Add File" Margin="425,0,382,406" Click="Button_Click_1" Grid.Column="1" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
-        <ListBox Name="TransferBox" HorizontalAlignment="Right" Margin="0,205,563,0" Width="757" Grid.Row="1" Grid.ColumnSpan="2" Height="396" VerticalAlignment="Top"/>
-        <Button Content="Transfer Files" Margin="10,558,167,10" Grid.Row="1" Click="Button_Click_2"/>
-        <Button Name="RemoveFile" Content="Remove File From List" Margin="10,205,167,376" Click="RemoveFile_Click" Grid.Row="1"/>
-        <TreeView Name="FolderView" Grid.Column="1" Margin="600,210,0,10" Grid.Row="1" HorizontalAlignment="Left" Width="548"/>
+        <Button Content="Open File" Margin="663,0,256,411" Click="Button_Click" Grid.Column="1" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
+        <Button Content="Add File" Margin="425,0,500,411" Click="Button_Click_1" Grid.Column="1" Grid.Row="1" Height="33" VerticalAlignment="Bottom" RenderTransformOrigin="0.504,-0.03"/>
+        <ListBox Name="TransferBox" Margin="272,205,964,0" Grid.Row="1" Grid.ColumnSpan="2" Height="396" VerticalAlignment="Top" SelectionChanged="TransferBox_SelectionChanged"/>
+        <Button Content="Transfer Files" Margin="10,558,0,10" Grid.Row="1" Click="Button_Click_2" HorizontalAlignment="Left" Width="257"/>
+        <Button Name="RemoveFile" Content="Remove File From List" Margin="10,205,0,0" Click="RemoveFile_Click" Grid.Row="1" HorizontalAlignment="Left" Width="257" Height="30" VerticalAlignment="Top"/>
+        <TreeView Name="FolderView" Grid.Column="1" Margin="0,205,10,0" Grid.Row="1" Height="396" VerticalAlignment="Top" HorizontalAlignment="Right" Width="548"/>
+        <Button Name="SaveState" Content="Save" HorizontalAlignment="Left" Margin="93,416,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="SaveState_Click"/>
+        <ListBox Name="Finished" Grid.Column="1" HorizontalAlignment="Left" Height="354" Margin="199,205,0,0" Grid.Row="1" VerticalAlignment="Top" Width="396"/>
+        <Button Content="Remove From Finished" Grid.Column="1" HorizontalAlignment="Left" Margin="199,564,0,0" Grid.Row="1" VerticalAlignment="Top" Width="396" Height="37"/>
+        <Button Content="File Finished" Grid.Column="1" HorizontalAlignment="Left" Margin="907,167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241" Height="33" Click="Button_Click_3"/>
+
     </Grid>
 </Window>
